@@ -1,0 +1,107 @@
+#ifndef GAMEBOARD_H
+#define GAMEBOARD_H
+#include "player.h"
+#include <vector>
+
+
+
+enum class Move {up, down, right, left};
+
+
+
+template<class T, class J, int nColInit=8, int nRowInit=8>
+class GameBoard
+{
+
+private:
+    int nCol;
+    int nRow;
+    T *b;
+    std::list<J> l();
+    int N;
+
+
+public:
+
+    //Constructeur vide.
+    GameBoard(){N(0), nCol(nColInit), nRow(nRowInit), b(new T[nColInit][nRowInit])}
+
+   //Constructeur initialisant la taille du board explicitement.
+   explicit GameBoard(int nCol, int nRow) :N(0), nCol(_nCol), nRow(_nRow),b(new T[_nCol][_nRow]){
+
+        if((nCol<=0) || (nRow<=0)){
+
+            nCol = nColInit;
+            nRow = nRowinit;
+            b=new T[nCol][nRow];
+
+        }
+    }
+
+
+   //Destructeur.
+   ~GameBoard();
+
+   //Ajoute une nouvelle tuile au board a l'emplacement indique par les indexes col & row.
+   void add(const T& tile, int row, int col){
+
+       try{
+
+           if(row>nRow+1 || col>nCol+1){
+               throw (-1);
+           }
+
+           b[col][row] = tile;
+
+
+       //La location de la nouvelle tuile est invalide (out of range)
+       }catch(int e){
+           throw (std::out_of_range);
+       }
+
+   }
+
+   const T& getTile(int row, int col) const{
+
+       try{
+
+           if(row>nRow+1 || col>nCol+1){
+               throw (-1);
+           }
+
+           const T& ref = b[col][row];
+
+           return ref;
+
+
+       //La location de la nouvelle tuile est invalide (out of range)
+       }catch(int e){
+           throw (std::out_of_range);
+       }
+   }
+
+   void getCoordinate(const T &tile, int *row, int *col) const{
+
+
+
+   }
+
+   void setPlayer(J player){
+       l.insert(player);
+       N++;
+   }
+
+
+   J getPlayer(const std::string& playerName);
+
+   const T& getTile(const std::string& playerName) const;
+
+   std::vector<J> getPlayers(const T& tile) const;
+
+   const T& move(Move move, const std::string& playerName );
+
+};
+
+
+
+#endif // GAMEBOARD_H
