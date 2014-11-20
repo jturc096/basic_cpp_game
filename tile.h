@@ -2,11 +2,13 @@
 #define TILE_H
 #include "player.h"
 
+template<class J>
 class Tile{
 
 private:
     int col;
     int row;
+    std::list<J> j();
 
 public:
     Tile(int _col, int _row);
@@ -18,6 +20,8 @@ public:
     int getCol() const;
     int getRow() const;
     std::string toString() const;
+    void addPlayer(J play);
+    void rmPlayer(J play);
 
 
 };

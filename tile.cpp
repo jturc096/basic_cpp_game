@@ -39,3 +39,10 @@ Tile::Tile(int _col, int _row){
 
     }
 
+    void Tile::addPlayer(J play){
+        j.push_back(play);
+
+    }
+    void Tile::rmPlayer(J play){}
+
+

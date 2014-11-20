@@ -51,3 +51,18 @@ std::string Player::getName() const{
 
 return name;
 }
+
+bool Player::hasWin(){
+    return ruby>=5;
+}
+
+ bool Player::operator==(Player p){
+     return (p.getName().compare(name)==0) && (p.getFood() == food) && (p.getGold()==gold);
+ }
+
+  int Player::getFood(){
+      return food;
+  }
+  int Player::getGold(){
+      return gold;
+  }
